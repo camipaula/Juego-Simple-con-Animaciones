@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -52,10 +54,19 @@ public class Player : MonoBehaviour
     {
         if (collision.collider.tag == "obstaculos")
         {
-            
             Destroy(gameObject);
             Debug.Log("Perdiste");
-            
+             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-1);
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ganar"))
+        {
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-1);
+            Debug.Log("ganaste");
+        }
+    }
+
 }
